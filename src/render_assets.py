@@ -766,6 +766,6 @@ for key in _colors:
         gtk3.write('${0}:rgb({1});\n'.format(key,_colors[key]))
     elif 'Disabled' in key or 'Inactive' in key:
         gtk3.write('${0}:{1};\n'.format(key,_colors[key]))
-    else:
+    elif key != 'WMactiveFont':
         gtk3.write('${0}:rgb({1});\n'.format(key,_colors[key]))
 gtk3.close()

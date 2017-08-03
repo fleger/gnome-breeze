@@ -12,6 +12,9 @@ def make_sure_path_exists(path):
         if exception.errno != errno.EEXIST:
             raise
 
+def default(value, defaultValue='0'):
+    return defaultValue if value == '' else value
+
 class ReadKdeGlobals():
     def __init__(self):
         self._colors = {}
@@ -86,8 +89,8 @@ class Color(object):
         return (r,g,b)
 
     def _intensity_effect(self,color,state):
-        effect = int(self.colordict[state + 'IntensityEffect'])
-        amount = float(self.colordict[state + 'IntensityAmount'])
+        effect = int(default(self.colordict[state + 'IntensityEffect']))
+        amount = float(default(self.colordict[state + 'IntensityAmount']))
         if effect == 0:
             (r,g,b) = color
         elif effect == 1:
@@ -102,8 +105,8 @@ class Color(object):
         return (r,g,b)
 
     def _color_effect(self,color,state):
-        effect = int(self.colordict[state + 'ColorEffect'])
-        amount = float(self.colordict[state + 'ColorAmount'])
+        effect = int(default(self.colordict[state + 'ColorEffect']))
+        amount = float(default(self.colordict[state + 'ColorAmount']))
         effect_color = self.colordict[state + 'Color']
         effect_color = (float(effect_color.split(',')[0])/255,float(effect_color.split(',')[1])/255,float(effect_color.split(',')[2])/255)
         if effect == 0:
@@ -115,8 +118,8 @@ class Color(object):
         return (r,g,b)
 
     def _contrast_effect(self,color,state):
-        effect = int(self.colordict[state + 'ContrastEffect'])
-        amount = float(self.colordict[state + 'ContrastAmount'])
+        effect = int(default(self.colordict[state + 'ContrastEffect']))
+        amount = float(default(self.colordict[state + 'ContrastAmount']))
         if effect == 0:
             return 1.0
         else:

@@ -11,7 +11,7 @@ create_folders () {
 }
 
 render_theme () {
-  python render_assets.py $1
+  python2 render_assets.py $1
   create_folders $2
   sass --cache-location /tmp/sass-cache gtk316/gtk.scss $2/gtk-3.0/gtk.css
   sass --cache-location /tmp/sass-cache gtk318/gtk.scss $2/gtk-3.18/gtk.css
